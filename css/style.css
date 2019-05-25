@@ -491,6 +491,17 @@ popup_engineer
   color: #454545;
 }
 
+.glazing .container .show{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;;
+}
+
+.glazing .container .hide{
+  display: none;
+}
+
 /*test*/
 /*.tabs li {
 	display: inline-block;
