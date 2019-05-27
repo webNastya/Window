@@ -114,52 +114,55 @@ function form() {
       failure: 'Что-то пошло не так'
     };
 
-  let forms = document.querySelectorAll('.form'),
-       inputs = document.getElementsByName('user_name, user_phone'),
-       statusMessage = document.createElement('div');
-       
+    let forms = document.querySelectorAll('.form'),
+      statusMessage = document.createElement('div');
+
   statusMessage.classList.add('status');
 
-  for (let f = 0; f < forms.length; f++) {
-     forms[f].addEventListener('submit', function(event) {
-        event.preventDefault();
-        forms[f].appendChild(statusMessage);
+  function sendForm() {
+    for (let i = 0; i < forms.length; i++) {
+      let form = forms[i];
+      form.addEventListener('submit', function (event) {
+          event.preventDefault();
+          form.appendChild(statusMessage);
+          let input = form.querySelectorAll('.form-control'),
+              request = new XMLHttpRequest();
 
-        let request = new XMLHttpRequest(),
-            formData = new FormData(forms[f]),
-            obj = {};
+          request.open('POST', 'server.php');
+          request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-        request.open('POST', 'server.php');
-        request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+          let formData = new FormData(form);
 
-        formData.forEach(function(value, key){
-           obj[key] = value;
+          request.send(formData);
+
+          request.addEventListener('readystatechange', function () {
+              if (request.readyState < 4) {
+                  statusMessage.innerHTML = message.loading;
+                  setTimeout(showModal, 3000);
+              } else if (request.readyState === 4 && request.status == 200) {
+                  statusMessage.innerHTML = message.success;
+                  setTimeout(showModal, 3000);
+              } else {
+                  statusMessage.innerHTML = message.failure;
+                  setTimeout(showModal, 3000);
+              }
+              function showModal(){
+                  statusMessage.style.display = 'none';
+                }
+          });
+          for (let i = 0; i < input.length; i++) {
+              input[i].value = '';
+          }
         });
-        let json = JSON.stringify(obj);
-
-        request.send(json);
-
-        request.addEventListener('readystatechange', function(){
-           if (request.readyState < 4) {
-               statusMessage.innerHTML = message.loading;
-           } else if (request.readyState === 4 && request.status == 200) {
-                 statusMessage.innerHTML = message.success;
-           } else {
-                 statusMessage.innerHTML = message.failure;
-           }
-        });
-       
-        for (let i = 0; i < inputs.length; i++) {
-             inputs[i].innerHTML = '';
-        } 
-     });
+      }
   }
+  sendForm();
   let phone = document.getElementsByName('user_phone');
   for (let i = 0; i < phone.length; i++) {
      phone[i].addEventListener('keypress', function (e) {
-          if (!/\d/.test(e.key)) {
-              e.preventDefault();
-          }
+        if (!/\d/.test(e.key)) {
+           e.preventDefault();
+        }
      });
   };
 }
@@ -284,11 +287,10 @@ function timer() {
 
 	function setClock(id, endtime) {
 		let timer = document.getElementById(id),
-			//numbers = timer.querySelectorAll('.numbers1'),
-			days = timer.querySelector('.numbers1')[0],
-			hours = timer.querySelector('.numbers1')[1],
-			minutes = timer.querySelector('.numbers1')[2],
-			seconds = timer.querySelector('.numbers1')[3],
+			days = timer.querySelector('#days'),
+			hours = timer.querySelector('#hours'),
+			minutes = timer.querySelector('#minutes'),
+			seconds = timer.querySelector('#seconds'),
 			timeInterval = setInterval(updateClock, 1000);
 
 		function updateClock() {
@@ -298,9 +300,7 @@ function timer() {
 			hours.textContent = ('0' + t.hours).slice(-2);
 			minutes.textContent = ('0' + t.minutes).slice(-2);
 			seconds.textContent = ('0' + t.seconds).slice(-2);
-			// for (let i = 0; i < numbers.length; i++) {
-			// 	numbers[i].textContent = ('0' + t.numbers[i]).slice(-2);
-			// }
+      
 			if (t.total <= 0) {
 				clearInterval(timeInterval);
 				days.textContent = '00';

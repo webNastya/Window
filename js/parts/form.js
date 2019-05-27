@@ -1,58 +1,61 @@
 function form() {
-   let message = {
+  let message = {
         loading: 'Загрузка...',
         success: 'Спасибо! Скоро мы с вами свяжемся!',
         failure: 'Что-то пошло не так'
       };
 
-      let forms = document.querySelectorAll('.form'),
-           inputs = document.getElementsByName('user_name, user_phone'),
-           statusMessage = document.createElement('div');
-           
-      statusMessage.classList.add('status');
+  let forms = document.querySelectorAll('.form'),
+      statusMessage = document.createElement('div');
 
-      for (let f = 0; f < forms.length; f++) {
-         forms[f].addEventListener('submit', function(event) {
-            event.preventDefault();
-            forms[f].appendChild(statusMessage);
+  statusMessage.classList.add('status');
 
-            let request = new XMLHttpRequest(),
-                formData = new FormData(forms[f]),
-                obj = {};
+  function sendForm() {
+    for (let i = 0; i < forms.length; i++) {
+      let form = forms[i];
+      form.addEventListener('submit', function (event) {
+          event.preventDefault();
+          form.appendChild(statusMessage);
+          let input = form.querySelectorAll('.form-control'),
+              request = new XMLHttpRequest();
 
-            request.open('POST', 'server.php');
-            request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+          request.open('POST', 'server.php');
+          request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-            formData.forEach(function(value, key){
-               obj[key] = value;
-            });
-            let json = JSON.stringify(obj);
+          let formData = new FormData(form);
 
-            request.send(json);
+          request.send(formData);
 
-            request.addEventListener('readystatechange', function(){
-               if (request.readyState < 4) {
-                   statusMessage.innerHTML = message.loading;
-               } else if (request.readyState === 4 && request.status == 200) {
-                     statusMessage.innerHTML = message.success;
-               } else {
-                     statusMessage.innerHTML = message.failure;
-               }
-            });
-           
-            for (let i = 0; i < inputs.length; i++) {
-                 inputs[i].innerHTML = '';
-            } 
-         });
-      }
-      let phone = document.getElementsByName('user_phone');
-      for (let i = 0; i < phone.length; i++) {
-         phone[i].addEventListener('keypress', function (e) {
-              if (!/\d/.test(e.key)) {
-                  e.preventDefault();
+          request.addEventListener('readystatechange', function () {
+              if (request.readyState < 4) {
+                  statusMessage.innerHTML = message.loading;
+                  setTimeout(showModal, 3000);
+              } else if (request.readyState === 4 && request.status == 200) {
+                  statusMessage.innerHTML = message.success;
+                  setTimeout(showModal, 3000);
+              } else {
+                  statusMessage.innerHTML = message.failure;
+                  setTimeout(showModal, 3000);
               }
-         });
-      };
+              function showModal(){
+                  statusMessage.style.display = 'none';
+                }
+          });
+          for (let i = 0; i < input.length; i++) {
+              input[i].value = '';
+          }
+        });
+      }
+  }
+  sendForm();
+  let phone = document.getElementsByName('user_phone');
+  for (let i = 0; i < phone.length; i++) {
+     phone[i].addEventListener('keypress', function (e) {
+        if (!/\d/.test(e.key)) {
+          e.preventDefault();
+        }
+     });
+  };
 
 }
 module.exports = form;
