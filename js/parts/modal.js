@@ -1,35 +1,48 @@
 function modal() {
   let headerBtn = document.querySelector('.header_btn'),
      popupEngineer = document.querySelector('.popup_engineer'),
-     close = document.querySelectorAll('.popup_close'),
      phoneLink = document.querySelectorAll('.phone_link'),
-     popup = document.querySelector('.popup');
+     popup = document.querySelector('.popup'),
+     close = document.querySelectorAll('.popup_close'),
+     modals = document.querySelectorAll('.popup_engineer, .popup');
 
   setTimeout(showModal, 60000);
   function showModal(){
     popup.style.display = 'block';
   }
 
-  // popupEngineer
   headerBtn.addEventListener('click', function(){
-     popupEngineer.style.display = 'block';
+    popupEngineer.style.display = 'block';
+    document.body.style.overflow = 'hidden';
   });
 
-  //Popup
-  for (let i = 0; i < phoneLink.length; i++) {
-     phoneLink[i].addEventListener('click', function(){
-         popup.style.display = 'block';
-     });
+  for (let i = 0; i < close.length; i++) {
+    phoneLink[i].addEventListener('click', function(){
+      popup.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    });
   }
 
-  let allClose = document.querySelectorAll('.popup_engineer, .popup');
-  for (let i = 0; i < close.length; i++) {
-     close[i].addEventListener('click', function(){
-        for (let c = 0; c < allClose.length; c++) {
-             allClose[c].style.display = 'none';
-             document.body.style.overflow = '';
-        }
-     });
+  function closeModal() {
+    for (let i = 0; i < close.length; i++) {
+      close[i].addEventListener('click', function(){
+        for (let o = 0; o < modals.length; o++) {
+            modals[o].style.display = 'none';
+            document.body.style.overflow = '';
+          }
+      });
+    }
   }
+  closeModal();
+  // Close In Outside Click
+  function outsideClick(e) {
+    for (let i = 0; i < modals.length; i++) {
+      if (e.target == modals[i]) {
+        modals[i].style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    }
+  }
+  window.addEventListener('click', outsideClick);
 }
 module.exports = modal;
