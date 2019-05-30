@@ -41,13 +41,13 @@ function modal() {
         document.body.style.overflow = 'hidden';
       });
       
-      for (let i = 0; i < close.length; i++) {
-        phoneLink[i].addEventListener('click', function(e){
-          e.preventDefault()
+      phoneLink.forEach(item => {
+        item.addEventListener('click', (e) => {
+          e.preventDefault();
           popup.style.display = 'block';
           document.body.style.overflow = 'hidden';
         });
-      }
+      });
 
       function closeModal() {
         for (let i = 0; i < close.length; i++) {
