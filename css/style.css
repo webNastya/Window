@@ -1,6 +1,6 @@
 /*Fonts Family*/
 /*Colors*/
-/*Basic settings*/show
+/*Basic settings*/
 html {
   /* overflow-x: hidden; */
   font-size: 10px;
@@ -33,15 +33,15 @@ textarea:focus {
   padding: 0 !important;
 }
 
-.form {
+.form .end_form {
   /*margin-top: 2rem;*/
   padding: 2rem 5rem;
   text-align: center;
   border-radius: 1rem;
   background-color: #ffffff;
 }
-popup_engineer
-.form h2 {
+
+.form .end_form h2 {
   margin-bottom: 3rem;
   font-size: 2rem;
   font-family: 'Open Sans', sans-serif;
@@ -51,7 +51,7 @@ popup_engineer
   line-height: 1.5;
 }
 
-.form h2 span {
+.form .end_form h2 span {
   font-size: 2.4rem;
   text-transform: uppercase;
 }
@@ -489,17 +489,6 @@ popup_engineer
 .glazing a.active {
   text-decoration: none;
   color: #454545;
-}
-
-.glazing .container .show{
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;;
-}
-
-.glazing .container .hide{
-  display: none;
 }
 
 /*test*/

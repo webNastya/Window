@@ -5,8 +5,7 @@ function calc() {
         popupProfile = document.querySelector('.popup_calc_profile'),
         profileBtn = document.querySelector('.popup_calc_profile_button'),
         popupEnd = document.querySelector('.popup_calc_end'),
-        forma = document.querySelector('.end_form'),
-        popupCalcInputs = popup.getElementsByTagName("input");
+        forma = document.querySelector('.end_form');
 
       for (let i = 0; i < glazingBtn.length; i++) {
         glazingBtn[i].addEventListener('click', () => {
@@ -118,7 +117,7 @@ function calc() {
         forma.addEventListener('submit', function(event) {
             event.preventDefault();
             forma.appendChild(statusMessage);
-            input = forma.querySelectorAll('.form-control');
+          let input = forma.querySelectorAll('.form-control');
 
             let request = new XMLHttpRequest();
             request.open('POST', 'server.php');
@@ -138,11 +137,17 @@ function calc() {
             request.addEventListener('readystatechange', () => {
                 if (request.readyState < 4) {
                     statusMessage.innerHTML = message.loading;
+                    setTimeout(showModal, 3000);
                 } else if (request.readyState === 4 && request.status == 200) {
                     statusMessage.innerHTML = message.success;
+                    setTimeout(showModal, 3000);
                 } else {
                     statusMessage.innerHTML = message.failure;
+                    setTimeout(showModal, 3000);
                 }
+                function showModal(){
+                      statusMessage.style.display = 'none';
+                    }
             });
             for (let i = 0; i < input.length; i++) {
                 input[i].value = '';

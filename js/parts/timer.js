@@ -1,5 +1,5 @@
 function timer() {
-  let deadLine = 'May 29 2019 21:00:00 GMT+03:00';
+  let deadLine = 'May 31 2019 21:00:00 GMT+03:00';
 
     function getTimeRemeining(endtime) {
         let t = Date.parse(endtime) - Date.parse(new Date()),
