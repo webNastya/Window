@@ -33,7 +33,7 @@ textarea:focus {
   padding: 0 !important;
 }
 
-.form .end_form {
+.form{
   /*margin-top: 2rem;*/
   padding: 2rem 5rem;
   text-align: center;
@@ -63,6 +63,13 @@ textarea:focus {
   text-align: center;
   border-radius: 1rem;
   -moz-box-sizing: border-box;
+}
+
+.end_form {
+  padding: 2rem 5rem;
+  text-align: center;
+  border-radius: 1rem;
+  background-color: #ffffff;
 }
 
 .form_input::-webkit-input-placeholder {
