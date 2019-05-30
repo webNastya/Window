@@ -1,4 +1,4 @@
-function tabs() {
+const tabs = () => {
  let tabGlazing = document.querySelectorAll('.glazing_block'),
     tabGlazingUrl = document.querySelectorAll('.glazing_block a'),
     glazingContent = document.querySelectorAll('.glazing_content'),
@@ -7,29 +7,29 @@ function tabs() {
     tabDecorationUrl = document.querySelectorAll('.decoration_item div'),
     decorationInfo = document.querySelectorAll('.decoration_info');
 
-  function hideGlazingContent(a, tabContent) {
+  const hideGlazingContent = (a, tabContent) => {
       for (let i = a; i < tabContent.length; i++) {
           tabContent[i].style.display = 'none';
       }
   }
 
-  function showGlazingContent(b, tabContent) {
+  const showGlazingContent = (b, tabContent) => {
       if (tabContent[b].style.display = 'none') {
           tabContent[b].style.display = 'block';
       }
   }
 
-  function linkdesactive(c, tabsUrl, activeClass) {
+  const linkdesactive = (c, tabsUrl, activeClass) => {
       for (let i = c; i < tabsUrl.length; i++) {
           tabsUrl[i].classList.remove(activeClass);
       }
   }
 
-  function linkactive(d, tabsUrl, activeClass) {
+  const linkactive = (d, tabsUrl, activeClass) => {
           tabsUrl[d].classList.add(activeClass);
   }
 
-  function toggleTabs(tabsClasses, tabsBtn, tabsContent, tabsUrl, activeClass) {
+  const toggleTabs = (tabsClasses, tabsBtn, tabsContent, tabsUrl, activeClass) => {
       document.body.addEventListener('click', e => {
           let tabs = e.target.closest(tabsClasses);
           if (tabs) {

@@ -1,4 +1,4 @@
-function timer() {
+const timer = () => {
   let deadLine = 'May 31 2019 21:00:00 GMT+03:00';
 
     function getTimeRemeining(endtime) {
@@ -17,7 +17,7 @@ function timer() {
         };
     };
 
-    function setClock(id, endtime) {
+    const setClock = (id, endtime) => {
         let timer = document.getElementById(id),
         //numbers = timer.querySelectorAll('.numbers1'),
         days = document.querySelector('#days'),

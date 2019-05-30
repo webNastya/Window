@@ -1,4 +1,4 @@
-function modal() {
+const modal = () => {
 	let headerBtn = document.querySelector('.header_btn'),
          popupEngineer = document.querySelector('.popup_engineer'),
          phoneLink = document.querySelectorAll('.phone_link'),
@@ -7,7 +7,7 @@ function modal() {
          modals = document.querySelectorAll('.popup_engineer, .popup');
 
       setTimeout(showModal, 60000);
-      function showModal(){
+      function showModal() {
         popup.style.display = 'block';
       }
 
@@ -36,7 +36,7 @@ function modal() {
           }
         });
 
-      headerBtn.addEventListener('click', function(){
+      headerBtn.addEventListener('click', () => {
         popupEngineer.style.display = 'block';
         document.body.style.overflow = 'hidden';
       });
@@ -49,7 +49,7 @@ function modal() {
         });
       });
 
-      function closeModal() {
+      const closeModal = () => {
         for (let i = 0; i < close.length; i++) {
           close[i].addEventListener('click', function(){
             for (let o = 0; o < modals.length; o++) {
@@ -61,7 +61,7 @@ function modal() {
       }
       closeModal();
       // Close In Outside Click
-      function outsideClick(e) {
+      const outsideClick = (e) => {
         for (let i = 0; i < modals.length; i++) {
           if (e.target == modals[i]) {
             modals[i].style.display = 'none';

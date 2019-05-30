@@ -1,4 +1,4 @@
-function form() {
+const form = () => {
 	 let message = {
         loading: 'Загрузка...',
         success: 'Спасибо! Скоро мы с вами свяжемся!',
@@ -10,7 +10,7 @@ function form() {
 
       statusMessage.classList.add('status');
 
-      function sendForm() {
+      const sendForm = () => {
         for (let i = 0; i < forms.length; i++) {
           let form = forms[i];
           form.addEventListener('submit', function (event) {
@@ -37,7 +37,7 @@ function form() {
                       statusMessage.innerHTML = message.failure;
                       setTimeout(showModal, 3000);
                   }
-                  function showModal(){
+                  const showModal = () => {
                       statusMessage.style.display = 'none';
                     }
               });

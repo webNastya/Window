@@ -1,4 +1,4 @@
-function calc() {
+const calc = () => {
 	let glazingBtn = document.querySelectorAll('.glazing_price_btn'),
         popup = document.querySelector('.popup_calc'),
         popupBtn = document.querySelector('.popup_calc_button'),
@@ -17,14 +17,14 @@ function calc() {
         smallPictures = popup.querySelectorAll(".picture"), // маленькие картинки добавить класс do_image_more
         bigPictures = popup.querySelectorAll(".big_img img"); // больше картинки
 
-      function hidePictures(a) {
+      const hidePictures = (a) => {
           for (let i = a; i < bigPictures.length; i++) {
               bigPictures[i].style.display = "none";
               smallPictures[i].classList.remove("do_image_more");
           }
       }
 
-      function showPictures(b) {
+      const showPictures = (b) => {
           if (bigPictures[b].style.display = "none") {
               bigPictures[b].style.display = "inline-block";
               smallPictures[b].classList.add("do_image_more");
@@ -112,7 +112,7 @@ function calc() {
 
     
 
-      function sendFormCalc() {
+      const sendFormCalc = () => {
         
         forma.addEventListener('submit', function(event) {
             event.preventDefault();
@@ -137,15 +137,15 @@ function calc() {
             request.addEventListener('readystatechange', () => {
                 if (request.readyState < 4) {
                     statusMessage.innerHTML = message.loading;
-                    setTimeout(showModal, 3000);
+                    setTimeout(showCalc, 3000);
                 } else if (request.readyState === 4 && request.status == 200) {
                     statusMessage.innerHTML = message.success;
-                    setTimeout(showModal, 3000);
+                    setTimeout(showCalc, 3000);
                 } else {
                     statusMessage.innerHTML = message.failure;
-                    setTimeout(showModal, 3000);
+                    setTimeout(showCalc, 3000);
                 }
-                function showModal(){
+                const showCalc = () => {
                       statusMessage.style.display = 'none';
                     }
             });

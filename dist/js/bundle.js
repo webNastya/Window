@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-function calc() {
+const calc = () => {
  let glazingBtn = document.querySelectorAll('.glazing_price_btn'),
         popup = document.querySelector('.popup_calc'),
         popupBtn = document.querySelector('.popup_calc_button'),
@@ -112,14 +112,14 @@ function calc() {
         smallPictures = popup.querySelectorAll(".picture"), // маленькие картинки добавить класс do_image_more
         bigPictures = popup.querySelectorAll(".big_img img"); // больше картинки
 
-      function hidePictures(a) {
+      const hidePictures = (a) => {
           for (let i = a; i < bigPictures.length; i++) {
               bigPictures[i].style.display = "none";
               smallPictures[i].classList.remove("do_image_more");
           }
       }
 
-      function showPictures(b) {
+      const showPictures = (b) => {
           if (bigPictures[b].style.display = "none") {
               bigPictures[b].style.display = "inline-block";
               smallPictures[b].classList.add("do_image_more");
@@ -207,7 +207,7 @@ function calc() {
 
     
 
-      function sendFormCalc() {
+      const sendFormCalc = () => {
         
         forma.addEventListener('submit', function(event) {
             event.preventDefault();
@@ -270,7 +270,7 @@ module.exports = calc;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-function form() {
+const form = () => {
 	let message = {
       loading: 'Загрузка...',
       success: 'Спасибо! Скоро мы с вами свяжемся!',
@@ -282,7 +282,7 @@ function form() {
 
   statusMessage.classList.add('status');
 
-  function sendForm() {
+  const sendForm = () => {
     for (let i = 0; i < forms.length; i++) {
       let form = forms[i];
       form.addEventListener('submit', function (event) {
@@ -309,7 +309,7 @@ function form() {
                   statusMessage.innerHTML = message.failure;
                   setTimeout(showModal, 3000);
               }
-              function showModal(){
+              const showModal = () => {
                   statusMessage.style.display = 'none';
                 }
           });
@@ -340,7 +340,7 @@ module.exports = form;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-function modal() {
+const modal = () => {
    let headerBtn = document.querySelector('.header_btn'),
          popupEngineer = document.querySelector('.popup_engineer'),
          phoneLink = document.querySelectorAll('.phone_link'),
@@ -349,7 +349,7 @@ function modal() {
          modals = document.querySelectorAll('.popup_engineer, .popup');
 
       setTimeout(showModal, 60000);
-      function showModal(){
+      function showModal() {
         popup.style.display = 'block';
       }
 
@@ -378,7 +378,7 @@ function modal() {
           }
         });
 
-      headerBtn.addEventListener('click', function(){
+      headerBtn.addEventListener('click', () => {
         popupEngineer.style.display = 'block';
         document.body.style.overflow = 'hidden';
       });
@@ -391,7 +391,7 @@ function modal() {
         });
       });
 
-      function closeModal() {
+      const closeModal = () => {
         for (let i = 0; i < close.length; i++) {
           close[i].addEventListener('click', function(){
             for (let o = 0; o < modals.length; o++) {
@@ -403,7 +403,7 @@ function modal() {
       }
       closeModal();
       // Close In Outside Click
-      function outsideClick(e) {
+      const outsideClick = (e) => {
         for (let i = 0; i < modals.length; i++) {
           if (e.target == modals[i]) {
             modals[i].style.display = 'none';
@@ -424,7 +424,7 @@ module.exports = modal;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-function tabs() {
+const tabs = () => {
  let tabGlazing = document.querySelectorAll('.glazing_block'),
     tabGlazingUrl = document.querySelectorAll('.glazing_block a'),
     glazingContent = document.querySelectorAll('.glazing_content'),
@@ -433,29 +433,29 @@ function tabs() {
     tabDecorationUrl = document.querySelectorAll('.decoration_item div'),
     decorationInfo = document.querySelectorAll('.decoration_info');
 
-  function hideGlazingContent(a, tabContent) {
+  const hideGlazingContent = (a, tabContent) => {
       for (let i = a; i < tabContent.length; i++) {
           tabContent[i].style.display = 'none';
       }
   }
 
-  function showGlazingContent(b, tabContent) {
+  const showGlazingContent = (b, tabContent) => {
       if (tabContent[b].style.display = 'none') {
           tabContent[b].style.display = 'block';
       }
   }
 
-  function linkdesactive(c, tabsUrl, activeClass) {
+  const linkdesactive = (c, tabsUrl, activeClass) => {
       for (let i = c; i < tabsUrl.length; i++) {
           tabsUrl[i].classList.remove(activeClass);
       }
   }
 
-  function linkactive(d, tabsUrl, activeClass) {
+  const linkactive = (d, tabsUrl, activeClass) => {
           tabsUrl[d].classList.add(activeClass);
   }
 
-  function toggleTabs(tabsClasses, tabsBtn, tabsContent, tabsUrl, activeClass) {
+  const toggleTabs = (tabsClasses, tabsBtn, tabsContent, tabsUrl, activeClass) => {
       document.body.addEventListener('click', e => {
           let tabs = e.target.closest(tabsClasses);
           if (tabs) {
@@ -486,7 +486,7 @@ module.exports = tabs;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-function timer() {
+const timer = () => {
     let deadLine = 'May 31 2019 21:59:59 GMT+03:00';
 
 	function getTimeRemeining(endtime) {
@@ -505,7 +505,7 @@ function timer() {
 		};
 	}
 
-	function setClock(id, endtime) {
+	const setClock = (id, endtime) => {
 		let timer = document.getElementById(id),
 			days = timer.querySelector('#days'),
 			hours = timer.querySelector('#hours'),
