@@ -5,10 +5,11 @@ function calc() {
         popupProfile = document.querySelector('.popup_calc_profile'),
         profileBtn = document.querySelector('.popup_calc_profile_button'),
         popupEnd = document.querySelector('.popup_calc_end'),
-        forma = document.querySelector('.end_form');
+        forma = document.querySelector('.end_form'),
+        popupCalcInputs = popup.getElementsByTagName("input");
 
       for (let i = 0; i < glazingBtn.length; i++) {
-        glazingBtn[i].addEventListener('click', function() {
+        glazingBtn[i].addEventListener('click', () => {
           popup.style.display = 'block'
         });
       }
@@ -45,21 +46,21 @@ function calc() {
         }
       });
       //popup
-      popupBtn.addEventListener('click', function(e) {
+      popupBtn.addEventListener('click', (e) => {
         e.preventDefault();
         popup.style.display = 'none'
         popupProfile.style.display = 'block'
       });
       let options = document.querySelectorAll('#width, #height');
       for (let i = 0; i < options.length; i++) {
-         options[i].addEventListener('keypress', function (e) {
+         options[i].addEventListener('keypress', (e) => {
             if (!/\d/.test(e.key)) {
                e.preventDefault();
             }
          });
       };
       //profile
-      profileBtn.addEventListener('click', function(){
+      profileBtn.addEventListener('click', () => {
          popupProfile.style.display = 'none'
          popupEnd.style.display = 'block'
       });
@@ -67,7 +68,7 @@ function calc() {
       let allPopup = document.querySelectorAll('.popup_calc, .popup_calc_profile, .popup_calc_end'),
           allClose = document.querySelectorAll('.popup_calc_close, .popup_calc_profile_close, .popup_calc_end_close');
       for (let i = 0; i < allClose.length; i++) {
-         allClose[i].addEventListener('click', function(){
+         allClose[i].addEventListener('click', () => {
             for (let c = 0; c < allPopup.length; c++) {
                allPopup[c].style.display = 'none';
             }
@@ -75,7 +76,8 @@ function calc() {
       }
 
       //calcForm
-       let message = {
+       let obj = {},
+        message = {
         loading: 'Загрузка...',
         success: 'Спасибо! Скоро мы с вами свяжемся!',
         failure: 'Что-то пошло не так'
